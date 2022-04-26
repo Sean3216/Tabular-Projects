@@ -1,0 +1,5 @@
+link to the dataset:
+https://drive.google.com/drive/folders/1EfnzjMyjibi25HHyrlGTmEbxrZphnl-Q?usp=sharing
+
+I also wrote an article on Medium about how I tackle this problem.
+https://medium.com/analytics-vidhya/determining-late-payments-on-loan-application-using-machine-learning-an-amateur-approach-1ae7501ed4f0
