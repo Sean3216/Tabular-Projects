@@ -1,0 +1,7 @@
+I also write articles on Medium about how I tackle this problem.
+
+Discovering Customer Segments using Machine Learning — Part 1 (Data Exploration)
+https://medium.com/analytics-vidhya/discovering-customer-segments-using-machine-learning-part-1-data-exploration-7c171c21206a
+
+Discovering Customer Segments using Machine Learning — Part 2(Dimension Reduction and Clustering)
+https://medium.com/analytics-vidhya/discovering-customer-segments-using-machine-learning-part-2-dimension-reduction-and-clustering-36c6108599f9
