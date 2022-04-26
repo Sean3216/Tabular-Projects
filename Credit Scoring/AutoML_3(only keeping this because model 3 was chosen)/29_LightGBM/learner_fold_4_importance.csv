@@ -1,0 +1,11 @@
+feature,mean_importance
+payment_ratio_6month,0.0018418430406860532
+total_3mo_usage_per_limit,0.004357579856284289
+total_usage_per_limit,0.006584239115944812
+payment_ratio,0.011479921962607543
+total_usage,0.020873606767469355
+utilization_3month,0.027644557006434922
+remaining_bill,0.028321783890073858
+delinquency_score,0.037658259404818165
+overlimit_percentage,0.03909059570944849
+payment_ratio_3month,0.08170283722742308

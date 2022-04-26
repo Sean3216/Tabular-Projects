@@ -1,0 +1,34 @@
+name,model_type,metric_type,metric_value,train_time,single_prediction_time
+1_Default_LightGBM,LightGBM,logloss,0.5081372509747762,13.23,0.0796
+2_Default_Xgboost,Xgboost,logloss,0.4900551105065709,12.62,0.0729
+3_Default_RandomForest,Random Forest,logloss,0.4917961983335795,17.63,0.1119
+8_LightGBM,LightGBM,logloss,0.4802702202636395,9.52,0.0658
+4_Xgboost,Xgboost,logloss,0.47666502198346894,11.62,0.065
+12_RandomForest,Random Forest,logloss,0.4756965496891589,23.34,0.145
+9_LightGBM,LightGBM,logloss,0.4798374772410849,9.39,0.0607
+5_Xgboost,Xgboost,logloss,0.4956706441562277,12.75,0.1229
+13_RandomForest,Random Forest,logloss,0.5044471929121751,20.24,0.1196
+10_LightGBM,LightGBM,logloss,0.49203103606366433,11.05,0.0648
+6_Xgboost,Xgboost,logloss,0.48139047223687825,13.18,0.07
+14_RandomForest,Random Forest,logloss,0.5080363382233962,28.63,0.1872
+11_LightGBM,LightGBM,logloss,0.510569086325884,16.85,0.0673
+7_Xgboost,Xgboost,logloss,0.48447581038408266,14.62,0.0702
+15_RandomForest,Random Forest,logloss,0.49202249973789003,17.37,0.0913
+12_RandomForest_RandomFeature,Random Forest,logloss,0.47899965302147635,21.57,0.1858
+16_RandomForest,Random Forest,logloss,0.47884925330426786,19.05,0.0918
+17_Xgboost,Xgboost,logloss,0.4781757591063248,13.6,0.0614
+18_Xgboost,Xgboost,logloss,0.4788032867452079,11.8,0.0721
+19_LightGBM,LightGBM,logloss,0.490380402754441,11.3,0.065
+20_LightGBM,LightGBM,logloss,0.4802702202636395,11.44,0.063
+21_LightGBM,LightGBM,logloss,0.4802702202636395,14.62,0.0649
+22_Xgboost,Xgboost,logloss,0.4809305903089584,12.65,0.0681
+23_RandomForest,Random Forest,logloss,0.4923638354948691,18.68,0.1209
+24_Xgboost,Xgboost,logloss,0.4763404237427062,12.49,0.0641
+25_Xgboost,Xgboost,logloss,0.4769920329863582,13.54,0.0618
+26_Xgboost,Xgboost,logloss,0.47635504148106594,13.54,0.0739
+27_Xgboost,Xgboost,logloss,0.4780839965704197,13.44,0.0698
+28_LightGBM,LightGBM,logloss,0.47944249483857343,12.32,0.0662
+29_LightGBM,LightGBM,logloss,0.48601217599266994,11.5,0.0634
+30_LightGBM,LightGBM,logloss,0.4784708098921275,12.45,0.0661
+31_LightGBM,LightGBM,logloss,0.48376820469535353,16.85,0.0649
+Ensemble,Ensemble,logloss,0.4706630070368294,2.33,0.4231

@@ -1,0 +1,33 @@
+{
+    "columns": [
+        "payment_ratio_3month",
+        "total_usage",
+        "total_usage_per_limit",
+        "delinquency_score",
+        "payment_ratio",
+        "payment_ratio_6month",
+        "utilization_3month",
+        "overlimit_percentage",
+        "total_3mo_usage_per_limit",
+        "remaining_bill"
+    ],
+    "rows": 1830,
+    "cols": 10,
+    "target_is_numeric": true,
+    "columns_info": {
+        "payment_ratio_3month": [],
+        "total_usage": [],
+        "total_usage_per_limit": [],
+        "delinquency_score": [],
+        "payment_ratio": [],
+        "payment_ratio_6month": [],
+        "utilization_3month": [],
+        "overlimit_percentage": [],
+        "total_3mo_usage_per_limit": [],
+        "remaining_bill": []
+    },
+    "target_info": [],
+    "n_features": 10,
+    "is_sample_weighted": false,
+    "n_classes": 2
+}

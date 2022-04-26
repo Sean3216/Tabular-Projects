@@ -1,0 +1,226 @@
+{
+    "uid": "f27a964d-025b-4f46-85a7-e7edbce2f649",
+    "name": "12_RandomForest_RandomFeature",
+    "preprocessing": [
+        {
+            "ml_task": "binary_classification",
+            "add_random_feature": true,
+            "params": {
+                "columns_preprocessing": {},
+                "target_preprocessing": [
+                    "na_exclude"
+                ],
+                "ml_task": "binary_classification",
+                "add_random_feature": true
+            }
+        },
+        {
+            "ml_task": "binary_classification",
+            "add_random_feature": true,
+            "params": {
+                "columns_preprocessing": {},
+                "target_preprocessing": [
+                    "na_exclude"
+                ],
+                "ml_task": "binary_classification",
+                "add_random_feature": true
+            }
+        },
+        {
+            "ml_task": "binary_classification",
+            "add_random_feature": true,
+            "params": {
+                "columns_preprocessing": {},
+                "target_preprocessing": [
+                    "na_exclude"
+                ],
+                "ml_task": "binary_classification",
+                "add_random_feature": true
+            }
+        },
+        {
+            "ml_task": "binary_classification",
+            "add_random_feature": true,
+            "params": {
+                "columns_preprocessing": {},
+                "target_preprocessing": [
+                    "na_exclude"
+                ],
+                "ml_task": "binary_classification",
+                "add_random_feature": true
+            }
+        },
+        {
+            "ml_task": "binary_classification",
+            "add_random_feature": true,
+            "params": {
+                "columns_preprocessing": {},
+                "target_preprocessing": [
+                    "na_exclude"
+                ],
+                "ml_task": "binary_classification",
+                "add_random_feature": true
+            }
+        }
+    ],
+    "learners": [
+        {
+            "library_version": "0.24.2",
+            "algorithm_name": "Random Forest",
+            "algorithm_short_name": "Random Forest",
+            "uid": "a978e382-4c13-49b8-8e54-ef8f5f4e1d53",
+            "params": {
+                "model_type": "Random Forest",
+                "ml_task": "binary_classification",
+                "n_jobs": -1,
+                "seed": 43,
+                "criterion": "entropy",
+                "max_features": 0.8,
+                "min_samples_split": 50,
+                "max_depth": 7,
+                "eval_metric_name": "logloss",
+                "explain_level": 1
+            },
+            "name": "learner_fold_0"
+        },
+        {
+            "library_version": "0.24.2",
+            "algorithm_name": "Random Forest",
+            "algorithm_short_name": "Random Forest",
+            "uid": "36849608-3bb0-4e1e-9bb6-8147823be7fb",
+            "params": {
+                "model_type": "Random Forest",
+                "ml_task": "binary_classification",
+                "n_jobs": -1,
+                "seed": 43,
+                "criterion": "entropy",
+                "max_features": 0.8,
+                "min_samples_split": 50,
+                "max_depth": 7,
+                "eval_metric_name": "logloss",
+                "explain_level": 1
+            },
+            "name": "learner_fold_1"
+        },
+        {
+            "library_version": "0.24.2",
+            "algorithm_name": "Random Forest",
+            "algorithm_short_name": "Random Forest",
+            "uid": "d3a2c16d-b9bd-4ce8-81fc-19f4d3040dd5",
+            "params": {
+                "model_type": "Random Forest",
+                "ml_task": "binary_classification",
+                "n_jobs": -1,
+                "seed": 43,
+                "criterion": "entropy",
+                "max_features": 0.8,
+                "min_samples_split": 50,
+                "max_depth": 7,
+                "eval_metric_name": "logloss",
+                "explain_level": 1
+            },
+            "name": "learner_fold_2"
+        },
+        {
+            "library_version": "0.24.2",
+            "algorithm_name": "Random Forest",
+            "algorithm_short_name": "Random Forest",
+            "uid": "bec71390-380d-4806-ba6e-0342121008c7",
+            "params": {
+                "model_type": "Random Forest",
+                "ml_task": "binary_classification",
+                "n_jobs": -1,
+                "seed": 43,
+                "criterion": "entropy",
+                "max_features": 0.8,
+                "min_samples_split": 50,
+                "max_depth": 7,
+                "eval_metric_name": "logloss",
+                "explain_level": 1
+            },
+            "name": "learner_fold_3"
+        },
+        {
+            "library_version": "0.24.2",
+            "algorithm_name": "Random Forest",
+            "algorithm_short_name": "Random Forest",
+            "uid": "bcf36b45-f68c-4dab-a922-a8c46ec00314",
+            "params": {
+                "model_type": "Random Forest",
+                "ml_task": "binary_classification",
+                "n_jobs": -1,
+                "seed": 43,
+                "criterion": "entropy",
+                "max_features": 0.8,
+                "min_samples_split": 50,
+                "max_depth": 7,
+                "eval_metric_name": "logloss",
+                "explain_level": 1
+            },
+            "name": "learner_fold_4"
+        }
+    ],
+    "params": {
+        "additional": {
+            "trees_in_step": 100,
+            "train_cant_improve_limit": 1,
+            "min_steps": 1,
+            "max_steps": 50,
+            "early_stopping_rounds": 50,
+            "max_rows_limit": null,
+            "max_cols_limit": null
+        },
+        "preprocessing": {
+            "columns_preprocessing": {},
+            "target_preprocessing": [
+                "na_exclude"
+            ],
+            "ml_task": "binary_classification",
+            "add_random_feature": true
+        },
+        "validation_strategy": {
+            "validation_type": "kfold",
+            "k_folds": 5,
+            "shuffle": true,
+            "stratify": true,
+            "X_path": "AutoML_3\\X.data",
+            "y_path": "AutoML_3\\y.data",
+            "results_path": "AutoML_3"
+        },
+        "learner": {
+            "model_type": "Random Forest",
+            "ml_task": "binary_classification",
+            "n_jobs": -1,
+            "seed": 43,
+            "criterion": "entropy",
+            "max_features": 0.8,
+            "min_samples_split": 50,
+            "max_depth": 7,
+            "eval_metric_name": "logloss",
+            "explain_level": 1
+        },
+        "automl_random_state": 42,
+        "ml_task": "binary_classification",
+        "explain_level": 1,
+        "name": "12_RandomForest_RandomFeature",
+        "status": "initialized",
+        "final_loss": null,
+        "train_time": null,
+        "data_type": "original",
+        "max_time_for_learner": 60
+    },
+    "saved": [
+        "12_RandomForest_RandomFeature\\learner_fold_0.random_forest",
+        "12_RandomForest_RandomFeature\\learner_fold_1.random_forest",
+        "12_RandomForest_RandomFeature\\learner_fold_2.random_forest",
+        "12_RandomForest_RandomFeature\\learner_fold_3.random_forest",
+        "12_RandomForest_RandomFeature\\learner_fold_4.random_forest"
+    ],
+    "predictions_fname": "12_RandomForest_RandomFeature\\predictions_out_of_folds.csv",
+    "metric_name": "logloss",
+    "final_loss": 0.47899965302147635,
+    "train_time": 18.125535249710083,
+    "is_stacked": false,
+    "threshold": 0.4826356742141259,
+    "single_prediction_time": 0.18575382232666016
+}

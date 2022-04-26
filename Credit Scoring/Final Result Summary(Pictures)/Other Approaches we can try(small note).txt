@@ -1,0 +1,4 @@
+- not adding the "credit_score" variables to the data but instead use the multiplier directly as weights for the model
+- Clustering by suspected relevant variables first(eg. overlimit_percentage,payment_ratio)
+- Try limiting variables like overlimit_percentage since the data is heavily skewed. We can create a new variable saying overlimit above average which states true if the overlimit percentage are way above the majority of overlimit percentage
+

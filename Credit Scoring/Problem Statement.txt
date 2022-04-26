@@ -1,0 +1,6 @@
+You are being asked to create a credit scoring model for a lending company. You are given a file with historical data. 
+1. The upper management wants the overall default rate of their portfolio to be below 2.5%, please provide recommendations on the optimal credit score cutoff rate. 
+2. Please create a credit score for each individual, validate your solution, and provide guidance on the next steps. 
+3. Please create deciles by credit score and provide risk and default levels by deciles (by decile and cumulative). Bonus if you can provide confidence (or methodology how you would do it) for your scores/default rates by bin. 
+ 
+You have 7days to complete this challenge. It is not a lot of time so please plan accordingly. The timer starts from the moment we send you an email with the assignment. 
