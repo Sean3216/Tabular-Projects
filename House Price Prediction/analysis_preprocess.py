@@ -149,4 +149,33 @@ class MultipleCorrespondenceAnalysis():
         output = pd.DataFrame(rawoutput, columns=["Coord_{}".format(i+1) for i in range(n_components)])
         return output
 
+
+###################################### Outlier Elimination by Iterative IQR ######################################
+def outliers_iqr(data):
+    q1, q3 = np.percentile(data, [25, 75])
+    iqr = q3 - q1
+    lower_bound = q1 - (iqr * 1.5)
+    upper_bound = q3 + (iqr * 1.5)
+    return np.where((data > upper_bound) | (data < lower_bound))
+
+def outliersearch(df, threshold = 3):
+    rep_index = [] #this list will contain the indexes of rows considered as outlier for each columns
+    for i in range(df.shape[1]): #for each columns in the dataset
+        #append the indexes of rows considered as outlier of each columns to rep_index 
+        rep_index.append(outliers_iqr(df.iloc[:,i]))
         
+    a=0 
+    outlier_index = []
+    for i in range(len(df)): #for rows in the data
+        a=0
+        for j in rep_index: 
+            #a single datapoint in rep_index contains the row indexes of a certain columns
+            #if the current row index is within this single datapoint in rep_index, plus 1
+            if i in j[0]: 
+                a+=1
+        if a>threshold: 
+            #if the number of columns that the current row is considered as outlier 
+            #is more than threshold, append the row index to outlier_index
+            outlier_index.append(i) 
+        
+    return outlier_index
