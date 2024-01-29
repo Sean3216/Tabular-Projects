@@ -433,4 +433,94 @@ class Preprocessing():
                     self.test[col] = self.test[col].astype(self.tempdata[col].dtype)
             else:
                 pass
+
+###################################### Feature Importance  ######################################
+#given a model like  this:
+#Distance-based Learners
+#ridge = RidgeCV(alphas=alphas_alt, cv=kfolds)
+#lasso = LassoCV(max_iter=10000000, alphas=alphas2, random_state=42, cv=kfolds)
+#elasticnet = ElasticNetCV(max_iter=10000000, alphas=e_alphas, cv=kfolds, l1_ratio=e_l1ratio)
+
+#Tree-based Learners
+#gbr = GradientBoostingRegressor(n_estimators=3000, learning_rate=0.05, max_depth=4, max_features='sqrt', min_samples_leaf=15, min_samples_split=10, loss='huber', random_state =42)       
+#lightgbm = LGBMRegressor(objective='regression', 
+#                                       num_leaves=4,
+#                                       learning_rate=0.01, 
+#                                       n_estimators=5000,
+#                                       max_bin=200, 
+#                                       bagging_fraction=0.75,
+#                                       bagging_freq=5, 
+#                                       bagging_seed=7,
+#                                       feature_fraction=0.2,
+#                                       feature_fraction_seed=7,
+#                                       verbose=-1,
+#                                       )
+#xgboost = XGBRegressor(learning_rate=0.01,n_estimators=5000,
+#                                     max_depth=3, min_child_weight=0,
+#                                     gamma=0, subsample=0.7,
+#                                     colsample_bytree=0.7,
+#                                     objective='reg:squarederror', nthread=-1,
+#                                     scale_pos_weight=1, seed=27,
+#                                     reg_alpha=0.00006)
+            
+class FeatureImportance():
+    def __init__(self,ridge, lasso, elasticnet, gbr, lightgbm, xgboost, df):
+        self.ridge = ridge
+        self.lasso = lasso
+        self.elasticnet = elasticnet
+        self.gbr = gbr
+        self.lightgbm = lightgbm
+        self.xgboost = xgboost
+        self.df = df
+
+    def calculate(self):
+            #get feature names
+            ridge_feature_names = self.df.columns
+            lasso_feature_names = self.df.columns
+            elasticnet_feature_names = self.df.columns
+            gbr_feature_names = self.df.columns
+            lightgbm_feature_names = self.df.columns
+            xgboost_feature_names = self.df.columns
+            #get the feature importance of each model as dictionary and set keys to be the feature names
+            ridge_feature_importance = dict(zip(ridge_feature_names, self.ridge.coef_))
+            lasso_feature_importance = dict(zip(lasso_feature_names, self.lasso.coef_))
+            elasticnet_feature_importance = dict(zip(elasticnet_feature_names, self.elasticnet.coef_))
+            gbr_feature_importance = dict(zip(gbr_feature_names, self.gbr.feature_importances_))
+            lightgbm_feature_importance = dict(zip(lightgbm_feature_names, self.lightgbm.feature_importances_))
+            xgboost_feature_importance = dict(zip(xgboost_feature_names, self.xgboost.feature_importances_))
+
+            #Distance-based models often times have positive and negative feature importance while tree-based models only have positive feature importance
+            #so, we need to make sure that the feature importance of distance-based models are all positive
+            ridge_feature_importance = {k:abs(v) for k,v in ridge_feature_importance.items()}
+            lasso_feature_importance = {k:abs(v) for k,v in lasso_feature_importance.items()}
+            elasticnet_feature_importance = {k:abs(v) for k,v in elasticnet_feature_importance.items()}
+
+            #make a dataframe with feature names and feature importance of each model as columns
+            df_importance = pd.DataFrame()
+            df_importance['Feature'] = ridge_feature_importance.keys()
+            for feature in ridge_feature_importance.keys():
+                df_importance.loc[df_importance['Feature'] == feature, 'Ridge'] = ridge_feature_importance[feature]
+                df_importance.loc[df_importance['Feature'] == feature, 'Lasso'] = lasso_feature_importance[feature]
+                df_importance.loc[df_importance['Feature'] == feature, 'ElasticNet'] = elasticnet_feature_importance[feature]
+                df_importance.loc[df_importance['Feature'] == feature, 'GradientBoosting'] = gbr_feature_importance[feature]
+                df_importance.loc[df_importance['Feature'] == feature, 'LightGBM'] = lightgbm_feature_importance[feature]
+                df_importance.loc[df_importance['Feature'] == feature, 'XGBoost'] = xgboost_feature_importance[feature]
+            return df_importance
+
+    def getfeatureimportance(self,weightridge = 1, weightlasso = 1, weightelasticnet = 1, weightgbr = 1, weightlightgbm = 1, weightxgboost = 1):
+        importance = self.calculate()
+        importance['Importance'] = (
+            importance['Ridge']*weightridge + importance['Lasso']*weightlasso + importance['ElasticNet']*weightelasticnet + 
+            importance['GradientBoosting']*weightgbr + importance['LightGBM']*weightlightgbm + importance['XGBoost']*weightxgboost
+            )
+        importance.drop(columns = ['Ridge','Lasso','ElasticNet','GradientBoosting','LightGBM','XGBoost'], inplace = True)
+        importance.sort_values(by = 'Importance', ascending = False, inplace = True)
+        return importance
+    
+    def plotfeatureimportance(self,importancedf):
+        plt.figure(figsize=(20, 20))
+        sns.barplot(x="Importance", y="Feature", data=importancedf)
+        plt.title('Feature Importance')
+        plt.tight_layout()
+        plt.show(block=False)
     
