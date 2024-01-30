@@ -523,4 +523,40 @@ class FeatureImportance():
         plt.title('Feature Importance')
         plt.tight_layout()
         plt.show(block=False)
+
+###################################### Realtor's Price Predictor ######################################
+def realtorpredict(df):
+    '''
+    Group the sale price by Neighborhood, MSZoning, Condition1, Condition2, 
+    BldgType, HouseStyle, Utilities, BsmtCond, GarageCond, SaleType, and SaleCondition 
+    then get the mean.
+    '''
+    #Select respective columns
+    predictorcol = ['Neighborhood','MSZoning','Condition1','Condition2','BldgType','HouseStyle',
+                    'Utilities', 'BsmtCond','GarageCond','SaleType','SaleCondition']
+    df = df[predictorcol+['SalePrice']]
+    #Fill missing values with NA
+    df['BsmtCond'] = df['BsmtCond'].fillna('NA')
+    df['GarageCond'] = df['GarageCond'].fillna('NA')
+
+    #drop index 948
+    df = df.drop(index = 948).reset_index(drop = True)
+
+    #Group by the columns and get the mean
+    priceintuition = df.groupby(predictorcol).mean()
+
+    #create a new column in the df named 'PriceIntuition' and fill with mean from groupby
+    df_predicted = pd.merge(df, priceintuition, on=predictorcol, how='left', suffixes=('', '_priceintuition'))
+
+    # Fill missing values in case some combinations didn't have mean prices (optional)
+    df_predicted['SalePrice_priceintuition'] = df_predicted['SalePrice_priceintuition'].fillna(priceintuition['SalePrice'].mean())
+
+    # Predict SalePrice using the mean prices
+    df_predicted['PredictedSalePrice'] = df_predicted['SalePrice_priceintuition']
+
+    # Drop the mean price column if not needed
+    df_predicted.drop(columns='SalePrice_priceintuition', inplace=True)
+
+    return df_predicted
+
     
