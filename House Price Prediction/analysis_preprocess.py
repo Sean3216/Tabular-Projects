@@ -14,7 +14,10 @@ def describe(df):
     print("Number of rows:")
     print(len(df))
     print("=====================================")
-    print("Number if unique id:")
+    print("Number of columns:")
+    print(len(df.columns))
+    print("=====================================")
+    print("Number of unique id:")
     print(df['Id'].nunique())
     print("=====================================")
     print("Number of unique houses:")
@@ -44,9 +47,12 @@ def checkcorrelation(df, target=None, threshold = None, cluster = False):
     else:
         if cluster:
             sns.clustermap(correlation_matrix, annot=True, fmt=".2f", figsize=(20, 20),vmin=-1, vmax=1)
+            #save high resolution image
+            plt.savefig('correlationclustered.png', dpi=300)
         else:
             plt.figure(figsize=(20, 20))
             sns.heatmap(correlation_matrix, annot=True, fmt=".2f",vmin=-1, vmax=1)
+            plt.savefig('correlation.png', dpi=300)
 
 def checkallcatvaluecounts(df):
     for col in df.select_dtypes(include=['object']).columns:
@@ -302,6 +308,10 @@ class Preprocessing():
         print(self.data[self.data['BsmtExposure'].isna()][['BsmtFinSF1','BsmtUnfSF']].loc[948])
         self.data = self.data.drop(index = 948).reset_index(drop = True)
 
+        #filling specific index on BsmtFinType2 with Unf
+        print("Filling specific index (index 332) on BsmtFinType2 with 'Unf'")
+        self.data.loc[332,'BsmtFinType2'] = 'Unf'
+
         #Feature Engineering
         self.data['has2ndfloor'] = self.data['2ndFlrSF'].apply(lambda i: "Yes" if i > 0 else "No").astype('object')
         self.data['hasfireplace'] = self.data['Fireplaces'].apply(lambda i: "Yes" if i > 0 else "No").astype('object')
@@ -435,33 +445,6 @@ class Preprocessing():
                 pass
 
 ###################################### Feature Importance  ######################################
-#given a model like  this:
-#Distance-based Learners
-#ridge = RidgeCV(alphas=alphas_alt, cv=kfolds)
-#lasso = LassoCV(max_iter=10000000, alphas=alphas2, random_state=42, cv=kfolds)
-#elasticnet = ElasticNetCV(max_iter=10000000, alphas=e_alphas, cv=kfolds, l1_ratio=e_l1ratio)
-
-#Tree-based Learners
-#gbr = GradientBoostingRegressor(n_estimators=3000, learning_rate=0.05, max_depth=4, max_features='sqrt', min_samples_leaf=15, min_samples_split=10, loss='huber', random_state =42)       
-#lightgbm = LGBMRegressor(objective='regression', 
-#                                       num_leaves=4,
-#                                       learning_rate=0.01, 
-#                                       n_estimators=5000,
-#                                       max_bin=200, 
-#                                       bagging_fraction=0.75,
-#                                       bagging_freq=5, 
-#                                       bagging_seed=7,
-#                                       feature_fraction=0.2,
-#                                       feature_fraction_seed=7,
-#                                       verbose=-1,
-#                                       )
-#xgboost = XGBRegressor(learning_rate=0.01,n_estimators=5000,
-#                                     max_depth=3, min_child_weight=0,
-#                                     gamma=0, subsample=0.7,
-#                                     colsample_bytree=0.7,
-#                                     objective='reg:squarederror', nthread=-1,
-#                                     scale_pos_weight=1, seed=27,
-#                                     reg_alpha=0.00006)
             
 class FeatureImportance():
     def __init__(self,ridge, lasso, elasticnet, gbr, lightgbm, xgboost, df):
